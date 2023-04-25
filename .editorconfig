@@ -1,0 +1,56 @@
+# http://editorconfig.org
+# For UED Team Code Specifications
+
+# 定义此文件为根config文件
+root = true
+
+
+# 默认的文件设置
+[*]
+
+# 统一使用utf-8编码
+charset = utf-8
+
+# 统一使用unix换行符
+end_of_line = lf
+
+# 统一缩进宽度
+tab_width = 2
+indent_size = 2
+
+# 统一缩进字符为空格(tab or space)
+indent_style = space
+
+# 统一文件结尾追加空行
+insert_final_newline=true
+
+# 统一在文件插入一个空行
+insert_final_newline = true
+
+# 自动消除行末的空白字符
+trim_trailing_whitespace = true
+
+# 每行最大长度
+# max_line_length = 120
+
+[*.{js,ts}]
+
+# 默认使用单引号
+quote_type = single
+
+# 匹配以`.md`结尾的文件。
+[*.md]
+
+# md 解析时缩进按四个空格算
+tab_width  = 4
+# 不移除空格，避免排版错乱问题
+trim_trailing_whitespace = false
+
+# makefile文件使用tab进行缩进
+[Makefile]
+tab_width  = 4
+indent_style = tab
+
+# windows特有文件，使用crlf换行符
+[*.{cmd,bat}]
+end_of_line = crlf
