@@ -9,7 +9,8 @@ export default defineComponent({
 
 <template>
   <div>
-    Remote
+    Host
     <Count />
+    <RemoteApp />
   </div>
 </template>

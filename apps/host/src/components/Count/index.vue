@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api';
-import { useCount } from './useCount';
+import { useCount } from './useCount'
 
 export default defineComponent({
   setup() {

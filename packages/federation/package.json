@@ -1,0 +1,34 @@
+{
+  "name": "federation",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "module": "dist/index.js",
+  "main": "dist/index.cjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "tsup"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "@softarc/native-federation": "^1.1.1"
+  },
+  "devDependencies": {
+    "@softarc/native-federation": "^1.1.1",
+    "@softarc/native-federation-runtime": "^1.1.1",
+    "@types/mime-types": "^2.1.1",
+    "@types/node": "^18",
+    "@vue/compiler-sfc": "^3.2.47",
+    "tsup": "^6.7.0",
+    "vite": "^4.3.1"
+  },
+  "dependencies": {
+    "mime-types": "^2.1.35"
+  }
+}
