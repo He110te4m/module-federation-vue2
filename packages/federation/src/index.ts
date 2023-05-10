@@ -1,9 +1,10 @@
-import { Connect, Plugin, ViteDevServer, normalizePath } from 'vite'
+import { Connect, Plugin, ViteDevServer, /* normalizePath */ } from 'vite'
 import { type BuildHelperParams, federationBuilder } from '@softarc/native-federation/build'
 import { filterExternals, mergeExternal } from './externalStore';
 import { existsSync, lstatSync, readFileSync } from 'fs'
 import { join } from 'path'
 import mime from 'mime-types'
+import { devExternalsMixin } from './devExternals'
 
 export function moduleFederationPlugin (params: BuildHelperParams): Plugin {
   return {
@@ -27,6 +28,7 @@ export function moduleFederationPlugin (params: BuildHelperParams): Plugin {
     configureServer(server) {
       configureDevServer(server, params)
     },
+    ...devExternalsMixin,
   }
 }
 
@@ -83,11 +85,11 @@ function enhanceFile(file: string, content: string) {
         ...el,
         outFileName: el.dev?.entryPoint.includes('/node_modules/')
           ? el.outFileName
-          : normalizePath(join('@fs', el.dev?.entryPoint || ''))
+          : normalize(join('@fs', el.dev?.entryPoint || ''))
       })),
       exposes: (data.exposes ?? []).map((el: Record<keyof any, any>) => ({
         ...el,
-        outFileName: normalizePath(join('@fs', el.dev?.entryPoint || ''))
+        outFileName: normalize(join('@fs', el.dev?.entryPoint || ''))
       }))
     }
     // globalThis.console.log('最终 remote json 为： ', data);
@@ -96,3 +98,7 @@ function enhanceFile(file: string, content: string) {
 
   return JSON.stringify(remoteEntry, null, 2)
 }
+
+const normalize = (path: string): string => {
+  return path.replace(/\\/g, '/');
+};

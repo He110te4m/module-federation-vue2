@@ -28,24 +28,24 @@ export default defineConfig(async ({ command }) => {
     resolve: {
       alias: {
         '@': resolve(__dirname, 'src'),
-        // ...getResolves(command)
+        ...getResolves(command)
       },
     },
   };
 });
 
-// function getResolves(command: string): { [find: string]: string; } {
-//   return command === 'serve'
-//     ? {
-//       vue: resolve(
-//         __dirname,
-//         './node_modules/vue/dist/vue.runtime.esm.js'
-//       ),
-//       '@vue/composition-api': resolve(
-//         __dirname,
-//         './node_modules/@vue/composition-api/dist/vue-composition-api.mjs'
-//         // './node_modules/@vue/composition-api/index.js'
-//       ),
-//     }
-//     : [];
-// }
+function getResolves(command: string): { [find: string]: string; } {
+  return command === 'serve'
+    ? {
+      vue: resolve(
+        __dirname,
+        './node_modules/vue/dist/vue.esm.js'
+      ),
+      '@vue/composition-api': resolve(
+        __dirname,
+        './node_modules/@vue/composition-api/dist/vue-composition-api.mjs'
+        // './node_modules/@vue/composition-api/index.js'
+      ),
+    }
+    : [];
+}

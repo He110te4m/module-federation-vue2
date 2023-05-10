@@ -8,6 +8,48 @@
       We need to add the shim _before_ we load any es modules
     -->
 
+  <script>
+    window.esmsInitOptions = (function () {
+      const sharedDeps = [
+        '@vue_composition-api.js',
+        'vue.js',
+      ];
+      function convertStringToDependencyRegExp(str) {
+        return str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&') + '(?!\\.map)';
+      }
+      const map = new Map();
+      const reg = new RegExp(sharedDeps.map(convertStringToDependencyRegExp).join('|'));
+      window.reg = reg;
+
+      return {
+        shimMode: true,
+        // fetch: async function (url, options) {
+        //   if (/.*\.map/.test(url)) {
+        //     console.log(url)
+        //   }
+
+        //   const res = await fetch(url, options);
+        //   if (!res.ok) {
+        //     return res;
+        //   }
+
+        //   const matched = url.match(reg);
+        //   const [dep] = matched || [];
+        //   if (!dep) {
+        //     return res;
+        //   }
+
+        //   if (map.has(dep)) {
+        //     return map.get(dep);
+        //   }
+        //   const response = new Response(await res.blob());
+        //   map.set(dep, response);
+        //   return response;
+        // } // defaults to `((url, options) => fetch(url, options))`
+      };
+    })()
+  </script>
+
   <script type="esms-options">
     {
       "shimMode": true
