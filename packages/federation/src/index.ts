@@ -4,11 +4,12 @@ import { filterExternals, mergeExternal } from './externalStore';
 import { existsSync, lstatSync, readFileSync } from 'fs'
 import { join } from 'path'
 import mime from 'mime-types'
-import { devExternalsMixin } from './devExternals'
+// import { devExternalsMixin } from './devExternals'
 
 export function moduleFederationPlugin (params: BuildHelperParams): Plugin {
   return {
     name: 'my-vite-module-federation',
+    enforce: 'pre',
     async options(opts) {
       await federationBuilder.init(params);
       const external = opts.external ?? [];
@@ -28,7 +29,7 @@ export function moduleFederationPlugin (params: BuildHelperParams): Plugin {
     configureServer(server) {
       configureDevServer(server, params)
     },
-    ...devExternalsMixin,
+    // ...devExternalsMixin,
   }
 }
 

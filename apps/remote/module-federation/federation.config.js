@@ -10,7 +10,7 @@ const opts = {
 module.exports = withNativeFederation({
   name: 'remote',
   exposes: {
-    './remote-app': './src/App.vue',
+    './remote-app': './src/test.ts',
   },
   shared: { ...shareAll(opts) },
   // shared: share({
